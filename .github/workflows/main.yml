@@ -18,4 +18,4 @@ jobs:
 
       - name: Run Python script over SSH
         run: |
-          sshpass -p "8SiOL5pB1yq81qN)()" ssh -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'cd public_html/python && python py4.py'
+          sshpass -p "8SiOL5pB1yq81qN)()" ssh -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'cd public_html/python && python progress.txt && python py4.py'
