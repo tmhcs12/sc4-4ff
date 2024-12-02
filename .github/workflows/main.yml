@@ -1,0 +1,21 @@
+name: Run SSH Command and Script
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering of the workflow via the GitHub API
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install SSH Client and sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client sshpass
+
+      - name: Run Python script over SSH
+        run: |
+          sshpass -p "8SiOL5pB1yq81qN)()" ssh -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'cd public_html/python && python py4.py'
