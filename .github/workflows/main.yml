@@ -16,10 +16,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openssh-client sshpass
 
-      - name: Check remote directory contents
-        run: |
-          sshpass -p "8SiOL5pB1yq81qN)()" ssh -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'ls -la public_html/python'
-
       - name: Run Python script over SSH with verbose output
         run: |
           sshpass -p "8SiOL5pB1yq81qN)()" ssh -v -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'cd public_html/python && python -u py4.py'
