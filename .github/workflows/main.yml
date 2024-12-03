@@ -1,27 +1,20 @@
-name: Run Workflow Script
+name: Run SSH Command and Script
 
 on:
-  schedule:
-    - cron: '0 */6 * * *'  # Runs every 6 hours
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering of the workflow via the GitHub API
 
 jobs:
   run_script:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-          
+    steps:
       - name: Install SSH Client and sshpass
         run: |
           sudo apt-get update
           sudo apt-get install -y openssh-client sshpass
-          
-      - name: Run Python script over SSH
+      - name: Run Python script over SSH with verbose output
         run: |
           sshpass -p "8SiOL5pB1yq81qN)()" ssh -o StrictHostKeyChecking=no imperfect-hour-bes@mnz.domcloud.co 'cd public_html/python && python -u py4.py'
